@@ -1948,7 +1948,7 @@ body.checkout-open {
 @media (max-width: 760px) {
   .gallery-stage {
     min-height: 0;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
   }
 
   .gallery-image-wrap {
@@ -1963,12 +1963,14 @@ body.checkout-open {
     width: min(100%, 92vw);
     max-height: 100%;
     transform: translateZ(24px);
+    object-fit: cover;
+    object-position: center top;
   }
 }
 
 @media (max-width: 420px) {
   .gallery-stage {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 1 / 1;
   }
 
   .gallery-image,
@@ -1978,6 +1980,8 @@ body.checkout-open {
   .shot[data-view-panel="flat"] .gallery-image {
     width: min(100%, 94vw);
     max-height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 }
 
@@ -2835,7 +2839,7 @@ font-size:0.66rem;
 
   .top-order-timer{
     right:10px !important;
-    top:78px !important;
+    top:50px !important;
     max-width:240px !important;
     padding:12px 13px !important;
     border-radius:18px !important;
@@ -3523,7 +3527,7 @@ html, body{
             <figure class="shot active" data-view-panel="front">
               <div class="artboard">
                 <div class="gallery-image-wrap">
-                  <img src="main front.png" class="gallery-image" alt="Main Front" />
+                  <img src="main front.webp" class="gallery-image" alt="Main Front" / loading="lazy">
                 </div>
               </div>
               <div class="gallery-meta">
@@ -3538,7 +3542,7 @@ html, body{
             <figure class="shot" data-view-panel="back">
               <div class="artboard">
                 <div class="gallery-image-wrap">
-                  <img src="main back.png" class="gallery-image" alt="Main Back" />
+                  <img src="main back.webp" class="gallery-image" alt="Main Back" / loading="lazy">
                 </div>
               </div>
               <div class="gallery-meta">
@@ -3553,7 +3557,7 @@ html, body{
             <figure class="shot" data-view-panel="detail">
               <div class="artboard">
                 <div class="gallery-image-wrap">
-                  <img src="front + back.png" class="gallery-image" alt="Front and Back" />
+                  <img src="front + back.webp" class="gallery-image" alt="Front and Back" / loading="lazy">
                 </div>
               </div>
               <div class="gallery-meta">
@@ -3568,7 +3572,7 @@ html, body{
             <figure class="shot" data-view-panel="flat">
               <div class="artboard">
                 <div class="gallery-image-wrap">
-                  <img src="front model 4.png" class="gallery-image" alt="Front Model 4" />
+                  <img src="front model 4.webp" class="gallery-image" alt="Front Model 4" / loading="lazy">
                 </div>
               </div>
               <div class="gallery-meta">
@@ -3583,7 +3587,7 @@ html, body{
             <figure class="shot" data-view-panel="model5">
               <div class="artboard">
                 <div class="gallery-image-wrap">
-                  <img src="front model 5.png" class="gallery-image" alt="Front Model 5" />
+                  <img src="front model 5.webp" class="gallery-image" alt="Front Model 5" / loading="lazy">
                 </div>
               </div>
               <div class="gallery-meta">
@@ -3756,12 +3760,12 @@ html, body{
       <div class="tee-gallery-grid tee-gallery-grid--top">
         <div class="tee-card tee-card--front">
           <div class="tee-glow-wrap">
-            <img src="front model 1.png" class="tee-img" alt="Front Model 1" />
+            <img src="front model 1.webp" class="tee-img" alt="Front Model 1" / loading="lazy">
           </div>
         </div>
         <div class="tee-card tee-card--back">
           <div class="tee-glow-wrap">
-            <img src="back model 1.png" class="tee-img" alt="Back Model 1" />
+            <img src="back model 1.webp" class="tee-img" alt="Back Model 1" / loading="lazy">
           </div>
         </div>
       </div>
@@ -3769,12 +3773,12 @@ html, body{
       <div class="tee-gallery-grid tee-gallery-grid--middle">
         <div class="tee-card tee-card--front-flat">
           <div class="tee-glow-wrap">
-            <img src="front model 2.png" class="tee-img" alt="Front Model 2" />
+            <img src="front model 2.webp" class="tee-img" alt="Front Model 2" / loading="lazy">
           </div>
         </div>
         <div class="tee-card tee-card--back-flat">
           <div class="tee-glow-wrap">
-            <img src="back model 2.png" class="tee-img" alt="Back Model 2" />
+            <img src="back model 2.webp" class="tee-img" alt="Back Model 2" / loading="lazy">
           </div>
         </div>
       </div>
@@ -3782,12 +3786,12 @@ html, body{
       <div class="tee-gallery-grid tee-gallery-grid--bottom">
         <div class="tee-card tee-card--front-below">
           <div class="tee-glow-wrap">
-            <img src="front model 3.png" class="tee-img" alt="Front Model 3" />
+            <img src="front model 3.webp" class="tee-img" alt="Front Model 3" / loading="lazy">
           </div>
         </div>
         <div class="tee-card tee-card--back-below">
           <div class="tee-glow-wrap">
-            <img src="back model 3.png" class="tee-img" alt="Back Model 3" />
+            <img src="back model 3.webp" class="tee-img" alt="Back Model 3" / loading="lazy">
           </div>
         </div>
       </div>
@@ -3801,7 +3805,7 @@ html, body{
 
       <div class="review-grid">
         <article class="review-card">
-          <img src="review 3.png" alt="Review 3" />
+          <img src="review 3.webp" alt="Review 3" / loading="lazy">
           <div class="review-stars" aria-label="Rated 5 out of 5">★★★★★</div>
           <strong>Really loved the fit and quality.</strong>
           <p></p>
@@ -3809,7 +3813,7 @@ html, body{
         </article>
 
         <article class="review-card">
-          <img src="review 1.png" alt="Review 1" />
+          <img src="review 1.webp" alt="Review 1" / loading="lazy">
           <div class="review-stars" aria-label="Rated 5 out of 5">★★★★★</div>
           <strong>Nice tshirt print quality fit is perfect. My son loved it.</strong>
           <p></p>
@@ -3817,7 +3821,7 @@ html, body{
         </article>
 
         <article class="review-card">
-          <img src="review 2.png" alt="Review 2" />
+          <img src="review 2.webp" alt="Review 2" / loading="lazy">
           <div class="review-stars" aria-label="Rated 5 out of 5">★★★★★</div>
           <strong>Really comfortable and it makes for a great fit with my grunge hoods. Great for bike rides too!</strong>
           <p></p>
@@ -3850,7 +3854,7 @@ html, body{
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" / loading="lazy">
   </div>
 
   <div class="sticky-cart" aria-hidden="false">
@@ -4188,7 +4192,7 @@ html, body{
 
     const activeImg = document.querySelector('.shot.active img') || document.querySelector('.gallery-stage img') || document.querySelector('img');
     if (activeImg) {
-      return `<img src="${activeImg.src}" alt="${escapeHtml(activeImg.alt || 'Product image')}" class="checkout-product-image" />`;
+      return `<img src="${activeImg.src}" alt="${escapeHtml(activeImg.alt || 'Product image')}" class="checkout-product-image" / loading="lazy">`;
     }
 
     return `<div class="checkout-fallback-visual">${escapeHtml(document.querySelector('h1')?.textContent || 'Product')}</div>`;
