@@ -1237,6 +1237,155 @@
         bottom: calc(110px + var(--safe-bottom, 0px));
       }
     }
+
+    /* ============================================================
+       LOADING SCREEN
+       ============================================================ */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: radial-gradient(120% 80% at 50% 40%, #141414 0%, #070707 60%, #000 100%);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      transition: opacity 600ms ease, visibility 0s linear 600ms;
+    }
+    .loader.is-done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 3px 3px;
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      animation: loader-noise 1.4s steps(6) infinite;
+    }
+    @keyframes loader-noise {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(1px, -1px); }
+      60% { transform: translate(-1px, -1px); }
+      80% { transform: translate(1px, 1px); }
+    }
+    .loader-grain {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
+      pointer-events: none;
+      animation: loader-sweep 2.4s ease-in-out infinite;
+    }
+    @keyframes loader-sweep {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+    .loader-inner {
+      position: relative;
+      width: min(520px, 86vw);
+      padding: 0 24px;
+      text-align: center;
+    }
+    .loader-mark {
+      position: relative;
+      display: inline-block;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: clamp(3.4rem, 11vw, 6rem);
+      letter-spacing: 0.18em;
+      line-height: 1;
+      color: var(--text);
+      margin: 0 0 28px;
+      padding: 0 6px;
+    }
+    .loader-mark::before {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: var(--text);
+      background: linear-gradient(90deg, transparent 0%, #fff 50%, transparent 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: loader-shine 2.2s ease-in-out infinite;
+    }
+    @keyframes loader-shine {
+      0% { background-position: -120% 0; }
+      100% { background-position: 220% 0; }
+    }
+    .loader-mark::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    }
+    .loader-tag {
+      font-family: "Oswald", sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin: 0 0 32px;
+      animation: loader-fade 1.6s ease-in-out infinite alternate;
+    }
+    @keyframes loader-fade {
+      from { opacity: 0.45; }
+      to   { opacity: 1; }
+    }
+    .loader-bar {
+      position: relative;
+      height: 2px;
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      background: linear-gradient(90deg, transparent 0%, #ff6b3d 30%, #fff 50%, #ff6b3d 70%, transparent 100%);
+      transform: translateX(-100%);
+      animation: loader-fill 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+    @keyframes loader-fill {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .loader-pct {
+      margin-top: 14px;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.32em;
+      color: var(--text-soft);
+    }
+    .loader-corner {
+      position: absolute;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .loader-corner.tl { top: 22px; left: 24px; }
+    .loader-corner.tr { top: 22px; right: 24px; }
+    .loader-corner.bl { bottom: 22px; left: 24px; }
+    .loader-corner.br { bottom: 22px; right: 24px; }
+    @media (prefers-reduced-motion: reduce) {
+      .loader, .loader::before, .loader-grain, .loader-mark::before, .loader-tag, .loader-bar::after {
+        animation: none !important;
+        transition: opacity 250ms ease;
+      }
+    }
     .info-list {
       margin-top: 22px;
       padding: 0;
@@ -1535,6 +1684,74 @@
   </style>
 </head>
 <body>
+
+  <!-- ============= LOADING SCREEN ============= -->
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading FVRST">
+    <div class="loader-grain"></div>
+    <div class="loader-inner">
+      <h1 class="loader-mark" data-text="FVRST">FVRST</h1>
+      <div class="loader-bar" aria-hidden="true"></div>
+      <div class="loader-pct" id="loaderPct">00%</div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const loader = document.getElementById('loader');
+      const pct = document.getElementById('loaderPct');
+      if (!loader) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const MIN_MS = reduceMotion ? 1500 : 3000;
+      const MAX_MS = 8000;
+      const startedAt = Date.now();
+
+      // Animate a fake progress counter so the percentage feels alive
+      let progress = 0;
+      const tick = () => {
+        if (progress < 92) {
+          const inc = Math.max(1, Math.round((92 - progress) * 0.18));
+          progress = Math.min(92, progress + inc);
+        }
+        if (pct) pct.textContent = String(progress).padStart(2, '0') + '%';
+      };
+      const ticker = setInterval(tick, 140);
+
+      const finish = () => {
+        clearInterval(ticker);
+        if (pct) pct.textContent = '100%';
+        progress = 100;
+        setTimeout(() => {
+          loader.classList.add('is-done');
+          setTimeout(() => loader.remove(), 700);
+        }, reduceMotion ? 0 : 220);
+      };
+
+      // Wait for BOTH conditions: full window.load (all images/resources) AND 3s minimum
+      let fullyLoaded = document.readyState === 'complete';
+      const onLoad = () => { fullyLoaded = true; tryFinish(); };
+      if (fullyLoaded) {
+        // already loaded
+      } else {
+        window.addEventListener('load', onLoad, { once: true });
+      }
+
+      const minTimer = setTimeout(() => { tryFinish(); }, MIN_MS);
+      const maxTimer = setTimeout(() => { tryFinish(); }, MAX_MS);
+
+      function tryFinish() {
+        if (!fullyLoaded) return;
+        if (Date.now() - startedAt < MIN_MS) {
+          // Re-arm: try again after the remaining time
+          const remaining = MIN_MS - (Date.now() - startedAt);
+          setTimeout(tryFinish, remaining);
+          return;
+        }
+        clearTimeout(minTimer);
+        clearTimeout(maxTimer);
+        finish();
+      }
+    })();
+  </script>
 
   <!-- ============= TRUST STRIP ============= -->
   <div class="trust-strip" role="region" aria-label="Shipping and returns information">
