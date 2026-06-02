@@ -274,7 +274,8 @@
       place-items: center;
       padding: 0;
       opacity: 0;
-      transition: opacity 380ms ease;
+      transform: scale(1.02);
+      transition: opacity 600ms ease, transform 6000ms ease-out;
       pointer-events: none;
     }
     .gallery-figure img {
@@ -285,7 +286,11 @@
       height: auto;
       object-fit: cover;
     }
-    .gallery-figure.active { opacity: 1; pointer-events: auto; }
+    .gallery-figure.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
     .gallery-figure img {
       user-select: none;
       -webkit-user-drag: none;
@@ -1806,7 +1811,18 @@
     (() => {
       const figures = document.querySelectorAll('.gallery-figure');
       const thumbs = document.querySelectorAll('.gallery-thumb');
-      const setView = (view) => {
+      if (!figures.length) return;
+
+      const order = Array.from(figures).map(f => f.dataset.view);
+      let currentIndex = order.findIndex(v => document.querySelector(`.gallery-figure[data-view="${v}"]`).classList.contains('active'));
+      if (currentIndex < 0) currentIndex = 0;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const AUTOPLAY_MS = 5000;
+
+      const setView = (index) => {
+        currentIndex = (index + order.length) % order.length;
+        const view = order[currentIndex];
         figures.forEach(f => f.classList.toggle('active', f.dataset.view === view));
         thumbs.forEach(t => {
           const isActive = t.dataset.view === view;
@@ -1814,7 +1830,29 @@
           t.setAttribute('aria-selected', String(isActive));
         });
       };
-      thumbs.forEach(t => t.addEventListener('click', () => setView(t.dataset.view)));
+
+      thumbs.forEach((t, i) => t.addEventListener('click', () => {
+        setView(i);
+        restart();
+      }));
+
+      if (reduceMotion) return;
+
+      let timer = null;
+      const start = () => { stop(); timer = setInterval(() => setView(currentIndex + 1), AUTOPLAY_MS); };
+      const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+      const restart = () => { stop(); start(); };
+
+      const stage = document.querySelector('.gallery-stage');
+      if (stage) {
+        stage.addEventListener('mouseenter', stop);
+        stage.addEventListener('mouseleave', start);
+        stage.addEventListener('focusin', stop);
+        stage.addEventListener('focusout', start);
+      }
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); });
+
+      start();
     })();
 
     // ============================================================
