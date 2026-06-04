@@ -4,6 +4,11 @@
       if (!loader) return;
 
       const page = document.body?.dataset.page === 'product' ? 'product' : 'home';
+      if (page === 'product') {
+        loader.remove();
+        return;
+      }
+
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const HOME_KEY = 'fv_loader_home_seen_v1';
       const PRODUCT_KEY = 'fv_loader_product_seen_v1';
