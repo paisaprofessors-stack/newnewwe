@@ -694,7 +694,7 @@
     .trust-strip-track {
       display: flex;
       width: max-content;
-      animation: trust-marquee 32s linear infinite;
+      animation: trust-marquee 56s linear infinite;
       will-change: transform;
     }
     .trust-strip-group {
@@ -706,7 +706,7 @@
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
-    .trust-strip-track:hover { animation-play-state: paused; }
+    .trust-strip-track:hover { animation-play-state: running; }
     .trust-strip-item {
       display: inline-flex;
       align-items: center;

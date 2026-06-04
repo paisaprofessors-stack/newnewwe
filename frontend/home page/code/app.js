@@ -324,22 +324,14 @@ const renderHome = () => {
   const grid = document.getElementById('homeProductGrid');
   if (!featured || !hero || !grid) return;
   grid.classList.remove('is-single');
+  const headerImage = '../assets/header.webp';
 
   hero.innerHTML = `
     <div class="home-hero-media home-hero-banner reveal">
       <a href="${detailUrl(featured)}" aria-label="View ${escapeHtml(featured.name)}">
-        <img src="${escapeHtml(featured.images.hero || featured.images.main)}" alt="${escapeHtml(featured.name)} styled on model" fetchpriority="high" />
+        <img src="${headerImage}" alt="${escapeHtml(featured.name)} styled on model" fetchpriority="high" />
       </a>
       <div class="home-hero-tag">${escapeHtml(featured.badge)}</div>
-      <div class="home-hero-caption">
-        <span>${escapeHtml(featured.category)}</span>
-        <h1>Premium weight. Street fit.</h1>
-      </div>
-      <div class="home-hero-dots" aria-hidden="true">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
-      </div>
     </div>
   `;
 
@@ -1092,9 +1084,35 @@ const initFomo = () => {
   setTimeout(() => createCard(buyers[1]), 24000);
 };
 
+const initHomeTrustStrip = () => {
+  const track = document.querySelector('.home-trust-strip .trust-strip-track');
+  const firstGroup = track?.querySelector('.trust-strip-group');
+  if (!track || !firstGroup) return;
+
+  const itemHtml = firstGroup.innerHTML;
+  const build = () => {
+    track.innerHTML = `<div class="trust-strip-group" aria-hidden="false">${itemHtml}</div>`;
+    const groupWidth = track.firstElementChild?.getBoundingClientRect().width || 0;
+    if (!groupWidth) return;
+    const groupsPerLoop = Math.max(2, Math.ceil((window.innerWidth * 1.25) / groupWidth) + 1);
+    track.innerHTML = Array.from({ length: groupsPerLoop * 2 }, (_, idx) =>
+      `<div class="trust-strip-group" aria-hidden="${idx === 0 ? 'false' : 'true'}">${itemHtml}</div>`
+    ).join('');
+    track.style.animationDuration = `${Math.max(44, groupsPerLoop * 14)}s`;
+  };
+
+  build();
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(build, 180);
+  }, { passive: true });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   if (state.page === 'home') renderHome();
   if (state.page === 'product') renderDetailProduct();
+  if (state.page === 'home') initHomeTrustStrip();
   bindEvents();
   renderCart();
   initGallery();
