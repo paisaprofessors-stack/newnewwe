@@ -21,8 +21,13 @@
       const minMs = reduceMotion
         ? 900
         : page === 'home'
-          ? (hasSeenHome ? 3000 : 5000)
+          ? (hasSeenHome ? 0 : 5000)
           : (hasSeenProduct ? 0 : 3000);
+
+      if (page === 'home' && hasSeenHome) {
+        loader.remove();
+        return;
+      }
 
       if (page === 'product' && hasSeenProduct) {
         loader.remove();
