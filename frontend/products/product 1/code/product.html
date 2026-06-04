@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travis Scott Oversized Tee — FVRST</title>
+  <meta name="description" content="Heavyweight 240 GSM cotton oversized tee. Washed-black finish, front print and clean blank back. Made in India." />
+  <meta name="theme-color" content="#070707" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://lkluaaxyaypgjzltviiy.supabase.co" />
+  <link rel="preload" as="image" href="../assets/preview1.webp" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="product" data-home-url="../../../home page/code/index.html" data-product-url="product.html" data-product-asset-base="../assets/">
+
+  <!-- ============= LOADING SCREEN ============= -->
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading FVRST">
+    <div class="loader-grain"></div>
+    <div class="loader-inner">
+      <h1 class="loader-mark" data-text="FVRST">FVRST</h1>
+      <div class="loader-bar" aria-hidden="true"></div>
+      <div class="loader-pct" id="loaderPct">00%</div>
+    </div>
+  </div>
+
+  <script src="loader.js"></script>
+
+  <!-- ============= HEADER ============= -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <nav class="header-links" aria-label="Primary">
+        <a href="#details" data-nav-link>Details</a>
+        <a href="#details" data-nav-link>Fit</a>
+      </nav>
+
+      <a href="../../../home page/code/index.html" class="brand" aria-label="FVRST homepage">
+        <strong>FVRST</strong>
+      </a>
+
+      <nav class="header-links right" aria-label="Primary right">
+        <a href="#reviews" data-nav-link>Reviews</a>
+        <button type="button" class="header-cart" id="openCartBtn" aria-label="Open bag">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="header-cart-text">Bag</span>
+          <span class="header-cart-count" id="headerCartCount" hidden>0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============= HERO ============= -->
+    <section class="hero shell">
+      <!-- Gallery -->
+      <div class="gallery-column reveal">
+        <div class="gallery" id="gallery">
+          <div class="gallery-stage" aria-roledescription="carousel">
+            <figure class="gallery-figure active" data-view="front">
+              <span class="gallery-figure-tag">Front</span>
+              <img src="../assets/preview1.webp" alt="Monochrome oversized tee, front view" width="900" height="1125" fetchpriority="high" />
+            </figure>
+            <figure class="gallery-figure" data-view="back">
+              <span class="gallery-figure-tag">Back</span>
+              <img src="../assets/preview2.webp" alt="Monochrome oversized tee, back view" width="900" height="1125" loading="lazy" />
+            </figure>
+            <figure class="gallery-figure" data-view="detail">
+              <span class="gallery-figure-tag">Front + Back</span>
+              <img src="../assets/preview3.webp" alt="Front print and blank back product view" width="900" height="1125" loading="lazy" />
+            </figure>
+            <figure class="gallery-figure" data-view="flat">
+              <span class="gallery-figure-tag">Styled</span>
+              <img src="../assets/preview4.webp" alt="Front model styled view" width="900" height="1125" loading="lazy" />
+            </figure>
+            <figure class="gallery-figure" data-view="model5">
+              <span class="gallery-figure-tag">Styled</span>
+              <img src="../assets/preview5.webp" alt="Front model styled view" width="900" height="1125" loading="lazy" />
+            </figure>
+          </div>
+          <div class="gallery-thumbs" role="tablist" aria-label="Product views">
+            <button class="gallery-thumb active" data-view="front" role="tab" aria-selected="true" aria-label="View front">
+              <img src="../assets/preview1.webp" alt="" loading="lazy" />
+            </button>
+            <button class="gallery-thumb" data-view="back" role="tab" aria-selected="false" aria-label="View back">
+              <img src="../assets/preview2.webp" alt="" loading="lazy" />
+            </button>
+            <button class="gallery-thumb" data-view="detail" role="tab" aria-selected="false" aria-label="Front and blank back">
+              <img src="../assets/preview3.webp" alt="" loading="lazy" />
+            </button>
+            <button class="gallery-thumb" data-view="flat" role="tab" aria-selected="false" aria-label="Styled front 4">
+              <img src="../assets/preview4.webp" alt="" loading="lazy" />
+            </button>
+            <button class="gallery-thumb" data-view="model5" role="tab" aria-selected="false" aria-label="Styled front 5">
+              <img src="../assets/preview5.webp" alt="" loading="lazy" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buy panel -->
+      <div class="buy-column reveal">
+        <div class="recent-ticker" id="recentTicker" aria-live="polite">
+          <span class="recent-ticker-dot"></span>
+          <span class="recent-ticker-text"><strong>Sneha from Hyderabad</strong> bought size M · 12 min ago</span>
+        </div>
+        <div class="buy-panel" data-product-id="mono-tee-01" data-product-name="Travis Scott Oversized Tee" data-product-price="649" data-product-compare="1200">
+          <h1 class="product-title">Travis Scott<br>Oversized Tee</h1>
+          <div class="price-row">
+            <div class="price-stack">
+              <span class="price">₹649</span>
+              <span class="compare">₹1,200</span>
+              <span class="savings-pill" id="discountPill">–46% off</span>
+            </div>
+          </div>
+          <div class="panel-card">
+            <div class="panel-head">
+              <h2>Choose size</h2>
+              <span class="selected-size" aria-live="polite">Selected: <strong id="selectedSizeText">L</strong></span>
+            </div>
+            <div class="size-grid" role="radiogroup" aria-label="Choose size">
+              <button class="size-btn" data-size="S" role="radio" aria-checked="false" tabindex="-1">S</button>
+              <button class="size-btn" data-size="M" role="radio" aria-checked="false" tabindex="-1">M</button>
+              <button class="size-btn active" data-size="L" role="radio" aria-checked="true" tabindex="0">L</button>
+              <button class="size-btn" data-size="XL" role="radio" aria-checked="false" tabindex="-1">XL</button>
+              <button class="size-btn" data-size="XXL" role="radio" aria-checked="false" tabindex="-1">XXL</button>
+            </div>
+            <button class="size-chart-link" id="openSizeChart2" type="button">View size chart</button>
+          </div>
+
+          <div class="buy-trust-line">
+            <span class="buy-trust-stars" aria-hidden="true">★★★★★</span>
+            <span class="buy-trust-text">4.9 &middot; verified buyer photos</span>
+            <a class="buy-trust-link" href="#reviews">Read</a>
+          </div>
+
+          <div class="buy-action">
+            <button class="buy-btn" id="mainBuyBtn" type="button">BUY NOW</button>
+            <button class="add-cart-btn" id="addCartBtn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+              Add to Bag
+            </button>
+            <div class="trust-badges">
+              <div class="trust-badge">
+                <div class="trust-badge-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 2v5h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></div>
+                <span class="trust-badge-text">Cash on<br>Delivery</span>
+              </div>
+              <div class="trust-badge">
+                <div class="trust-badge-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 4-3.5 8-8 9-4.5-1-8-5-8-9V7l8-4z"/></svg></div>
+                <span class="trust-badge-text">100% Secure<br>Checkout</span>
+              </div>
+              <div class="trust-badge">
+                <div class="trust-badge-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M9 11l3 3 3-3"/></svg></div>
+                <span class="trust-badge-text">Free Size<br>Exchange</span>
+              </div>
+            </div>
+            <div class="offer-banner" id="offerBanner">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span>Free shipping ends in</span>
+              <span class="countdown" id="countdown">
+                <span class="countdown-seg" id="cdHrs">02</span>
+                <span class="countdown-sep">:</span>
+                <span class="countdown-seg" id="cdMin">45</span>
+                <span class="countdown-sep">:</span>
+                <span class="countdown-seg" id="cdSec">00</span>
+              </span>
+            </div>
+            <div class="guarantee-strip">
+              <span class="guarantee-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> 7-Day Returns</span>
+              <span class="guarantee-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Free Exchange</span>
+              <span class="guarantee-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Made in India</span>
+              <span class="guarantee-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Phone Confirmation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FABRIC & FIT ============= -->
+    <section class="section shell reveal" id="details">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Fabric &amp; fit</h2>
+          <p class="section-sub">Built to feel substantial and look sharp with minimal effort.</p>
+        </div>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-block">
+          <h3>240 GSM</h3>
+          <p>Heavyweight cotton that drapes well and holds shape wash after wash.</p>
+          <span class="proof-meta">Cotton</span>
+        </div>
+        <div class="proof-block">
+          <h3>Oversized</h3>
+          <p>Relaxed boxy cut with dropped shoulders for a true streetwear silhouette.</p>
+          <span class="proof-meta">Fit</span>
+        </div>
+        <div class="proof-block">
+          <h3>Washed Black</h3>
+          <p>Pre-washed finish for a softer hand-feel and lived-in look from day one.</p>
+          <span class="proof-meta">Finish</span>
+        </div>
+        <div class="proof-block">
+          <h3>Front Print</h3>
+          <p>Water-based front screenprint with a clean blank back, designed to age naturally with wear.</p>
+          <span class="proof-meta">Print</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= MODEL GALLERY ============= -->
+    <section class="section shell reveal" id="tee-gallery">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">In motion</h2>
+          <p class="section-sub">How it looks on, up close and styled.</p>
+        </div>
+      </div>
+      <div class="tee-gallery">
+        <div class="tee-card tall"><img src="../assets/inmotion1.webp" alt="Model wearing tee, front view" loading="lazy" /></div>
+        <div class="tee-card"><img src="../assets/inmotion2.webp" alt="Model wearing tee, back view" loading="lazy" /></div>
+        <div class="tee-card"><img src="../assets/inmotion3.webp" alt="Model wearing tee, alternative front" loading="lazy" /></div>
+        <div class="tee-card"><img src="../assets/inmotion4.webp" alt="Model wearing tee, alternative back" loading="lazy" /></div>
+        <div class="tee-card"><img src="../assets/inmotion5.webp" alt="Model wearing tee, fit detail" loading="lazy" /></div>
+        <div class="tee-card"><img src="../assets/inmotion6.webp" alt="Model wearing tee, back print detail" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <!-- ============= SPEC TABLE ============= -->
+    <section class="section shell reveal">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Specifications</h2>
+          <p class="section-sub">Everything important, nothing extra.</p>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-list">
+          <div class="spec-row"><span class="spec-key">Fabric</span><span class="spec-val">100% cotton, 240 GSM jersey</span></div>
+          <div class="spec-row"><span class="spec-key">Fit</span><span class="spec-val">Relaxed oversized cut</span></div>
+          <div class="spec-row"><span class="spec-key">Colour</span><span class="spec-val">Washed black, cream print</span></div>
+          <div class="spec-row"><span class="spec-key">Print</span><span class="spec-val">Water-based front screenprint, blank back</span></div>
+          <div class="spec-row"><span class="spec-key">Care</span><span class="spec-val">Cold wash, inside out, no tumble dry</span></div>
+          <div class="spec-row"><span class="spec-key">Origin</span><span class="spec-val">Made in India</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= REVIEWS ============= -->
+    <section class="section shell reveal" id="reviews">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Reviews</h2>
+          <div class="section-sub review-summary">
+            <span class="review-summary-stars" aria-hidden="true">★★★★★</span>
+            <span>4.9 · based on recent verified orders</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-grid">
+        <article class="review-card">
+          <img class="review-card-photo" src="../assets/review3.webp" alt="Customer photo of Travis Scott Oversized Tee" loading="lazy" />
+          <div class="review-stars" aria-label="Rated 5 out of 5">★★★★★</div>
+          <p class="review-quote">Really loved the fit and quality. The fabric feels premium and the print is sharp.</p>
+          <div class="review-meta">
+            <span>Ananya R.</span>
+            <span class="review-verified">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Verified buyer
+            </span>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <img class="review-card-photo" src="../assets/review1.webp" alt="Customer photo of Travis Scott Oversized Tee" loading="lazy" />
+          <div class="review-stars" aria-label="Rated 5 out of 5">★★★★★</div>
+          <p class="review-quote">Nice t-shirt, print quality and fit is perfect.</p>
+          <div class="review-meta">
+            <span>Vihal Jiarni</span>
+            <span class="review-verified">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Verified buyer
+            </span>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <img class="review-card-photo" src="../assets/review2.webp" alt="Customer photo of Travis Scott Oversized Tee" loading="lazy" />
+          <div class="review-stars" aria-label="Rated 5 out of 5">★★★★★</div>
+          <p class="review-quote">Really comfortable and pairs well with my grunge hoods. Great for bike rides too.</p>
+          <div class="review-meta">
+            <span>Arnav</span>
+            <span class="review-verified">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Verified buyer
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============= FOOTER ============= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>FVRST</strong>
+        <p>Dark essentials, built for everyday wear. Heavyweight cotton, considered design.</p>
+        <div class="footer-social" aria-label="Social links">
+          <a href="https://instagram.com/fvrst" target="_blank" rel="noopener" data-social="instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+          </a>
+          <a href="https://wa.me/919000000000" target="_blank" rel="noopener" data-social="whatsapp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 1 1-3.2-6.4L20 4l-1.1 3.2A8 8 0 0 1 20 11.5z"/><path d="M8.5 9.5c.4 1.4 1.4 2.5 2.7 3.2.6.3 1 .1 1.3-.3l.5-.7c.2-.2.5-.3.7-.2l1.7.8c.3.2.4.5.2.8-.5.9-1.5 1.4-2.6 1.2-2.4-.4-4.4-2.4-4.8-4.8-.2-1.1.3-2.1 1.2-2.6.3-.2.6-.1.8.2l.8 1.7c.1.2 0 .5-.2.7l-.7.5c-.4.3-.6.7-.3 1.3z"/></svg>
+          </a>
+          <a href="mailto:FVRST@proton.me" data-social="email" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#details">Details</a></li>
+          <li><a href="#details">Fit</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#tee-gallery">In motion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#" id="openSizeChartFoot">Size chart</a></li>
+          <li><a href="#" id="openShippingFoot">Shipping</a></li>
+          <li><a href="#" id="openReturnsFoot">Returns &amp; exchange</a></li>
+          <li><a href="#" id="openContactFoot">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#" id="openPrivacyFoot">Privacy policy</a></li>
+          <li><a href="#" id="openTermsFoot">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© FVRST. All rights reserved.</span>
+      <span>COD available &middot; Free shipping &middot; Made in India</span>
+    </div>
+  </footer>
+
+  <!-- ============= STICKY MOBILE CTA ============= -->
+  <div class="sticky-cta" id="stickyCta" aria-hidden="true">
+    <div class="sticky-cta-info">
+      <span class="sticky-price">₹649 · <span id="stickySize">L</span></span>
+      <span class="sticky-size">🔥 <span id="stickyViewers">14</span> viewing · Free shipping</span>
+    </div>
+    <button class="sticky-cta-btn" id="stickyBuyBtn" type="button">BUY NOW</button>
+  </div>
+
+  <!-- ============= SIZE CHART MODAL ============= -->
+  <div class="modal" id="sizeChartModal" role="dialog" aria-modal="true" aria-labelledby="sizeChartTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close size chart">×</button>
+      <div class="modal-content">
+        <h2 class="modal-title" id="sizeChartTitle">Size chart</h2>
+        <p class="modal-sub">Measurements in inches. Oversized silhouette with relaxed premium streetwear fit.</p>
+        <table class="size-chart-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Chest</th>
+              <th>Length</th>
+              <th>Shoulder</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-size="S"><td>S</td><td>40</td><td>27</td><td>17</td></tr>
+            <tr data-size="M"><td>M</td><td>42</td><td>28</td><td>18</td></tr>
+            <tr data-size="L" class="is-active"><td>L</td><td>44</td><td>29</td><td>19</td></tr>
+            <tr data-size="XL"><td>XL</td><td>46</td><td>30</td><td>20</td></tr>
+            <tr data-size="XXL"><td>XXL</td><td>48</td><td>31</td><td>21</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= SHIPPING MODAL ============= -->
+  <div class="modal" id="shippingModal" role="dialog" aria-modal="true" aria-labelledby="shippingTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close shipping">×</button>
+      <div class="modal-content">
+        <h2 class="modal-title" id="shippingTitle">Shipping</h2>
+        <p class="modal-sub">Fast, tracked delivery across India. Every order is packed with care.</p>
+        <ul class="info-list">
+          <li><strong>Free shipping</strong> on orders from ₹599.</li>
+          <li><strong>Standard delivery:</strong> 4–7 business days.</li>
+          <li><strong>Express delivery:</strong> 2–3 business days (metro cities).</li>
+          <li><strong>Order tracking</strong> link sent via Email and SMS on dispatch.</li>
+          <li><strong>Cash on Delivery (COD)</strong> available pan-India.</li>
+          <li>Orders are processed and dispatched within <strong>24 hours</strong> on business days.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= RETURNS & EXCHANGE MODAL ============= -->
+  <div class="modal" id="returnsModal" role="dialog" aria-modal="true" aria-labelledby="returnsTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close returns & exchange">×</button>
+      <div class="modal-content">
+        <h2 class="modal-title" id="returnsTitle">Returns &amp; exchange</h2>
+        <p class="modal-sub">Hassle-free 7-day returns and easy size exchanges.</p>
+        <ul class="info-list">
+          <li><strong>7-day return window</strong> from the date of delivery.</li>
+          <li>Product must be <strong>unused, unwashed</strong> and in original packaging with tags.</li>
+          <li>Free <strong>size exchange</strong> — pick a new size, we'll ship it at no extra cost.</li>
+          <li>Refunds are processed within <strong>3–5 business days</strong> after we receive the return.</li>
+          <li>To start a return or exchange, email us at <strong>FVRST@proton.me</strong> with your order ID.</li>
+          <li>Sale items and customized products are <strong>not eligible</strong> for return.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= CONTACT MODAL ============= -->
+  <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close contact">×</button>
+      <div class="modal-content">
+        <h2 class="modal-title" id="contactTitle">Contact</h2>
+        <p class="modal-sub">We typically respond within 24 hours, Monday to Saturday.</p>
+        <ul class="info-list">
+          <li><strong>Email:</strong> FVRST@proton.me</li>
+          <li><strong>Phone / WhatsApp:</strong> +91 90000 00000</li>
+          <li><strong>Hours:</strong> Mon – Sat, 10:00 AM – 7:00 PM IST</li>
+          <li><strong>Order queries:</strong> Please include your order ID for faster support.</li>
+          <li><strong>Studio:</strong> FVRST, Bengaluru, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= PRIVACY MODAL ============= -->
+  <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close privacy">×</button>
+      <div class="modal-content">
+        <h2 class="modal-title" id="privacyTitle">Privacy policy</h2>
+        <p class="modal-sub">We collect the minimum information needed to fulfil your order and never sell your data.</p>
+        <ul class="info-list">
+          <li><strong>What we collect:</strong> name, phone, shipping address, and order details when you place an order.</li>
+          <li><strong>Why:</strong> to dispatch, deliver, and support your order.</li>
+          <li><strong>Storage:</strong> order data is held in our secure database (Supabase) for warranty and reorder support.</li>
+          <li><strong>Marketing:</strong> we only contact you about your order. No newsletters are sent today.</li>
+          <li><strong>Your rights:</strong> request export or deletion of your data at <strong>FVRST@proton.me</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= TERMS MODAL ============= -->
+  <div class="modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close terms">×</button>
+      <div class="modal-content">
+        <h2 class="modal-title" id="termsTitle">Terms of service</h2>
+        <p class="modal-sub">By placing an order with FVRST you agree to the terms below.</p>
+        <ul class="info-list">
+          <li>Orders are confirmed by phone before dispatch. We may cancel unconfirmed orders within 24 hours.</li>
+          <li>Prices are inclusive of GST where applicable. Delivery is free on orders from ₹599.</li>
+          <li>Cash on Delivery orders must be paid in full at delivery.</li>
+          <li>Sale and customised items are not eligible for return.</li>
+          <li>For full legal terms, contact <strong>FVRST@proton.me</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= CHECKOUT MODAL ============= -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-label="Checkout" aria-hidden="true">
+    <div class="modal-panel checkout-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close checkout">×</button>
+      <div class="modal-content" id="checkoutContent"></div>
+    </div>
+  </div>
+
+
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image preview">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <!-- ============= FOMO NOTIFICATIONS ============= -->
+  <div class="fomo-stack" id="fomoStack" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ============= CART DRAWER ============= -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle" aria-hidden="true">
+    <div class="cart-drawer-head">
+      <h2 class="cart-drawer-title" id="cartDrawerTitle">Your bag</h2>
+      <button class="cart-drawer-close" id="cartDrawerClose" type="button" aria-label="Close bag">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerBody"></div>
+    <div class="cart-drawer-foot" id="cartDrawerFoot"></div>
+  </aside>
+
+
+  <!-- Exit-intent popup -->
+  <div class="exit-popup" id="exitPopup" aria-hidden="true">
+    <div class="exit-popup-card">
+      <button class="exit-popup-close" id="exitPopupClose" type="button" aria-label="Close">×</button>
+      <div class="exit-popup-emoji">👋</div>
+      <h3>Wait — don't miss out!</h3>
+      <p>This tee is selling fast. COD available, free shipping, and 7-day easy returns. Zero risk.</p>
+      <button class="buy-btn" id="exitPopupBuy" type="button">BUY NOW</button>
+      <p class="exit-popup-sub">Free shipping · 7-day exchange · No prepaid risk</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
