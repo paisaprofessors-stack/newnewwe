@@ -702,9 +702,75 @@ const getCheckoutDelivery = () => getDelivery(getCheckoutSubtotal());
 const getCheckoutTotal = () => getCheckoutSubtotal() + getCheckoutDelivery();
 const getCheckoutQuantity = () => getCheckoutItems().reduce((sum, item) => sum + item.qty, 0);
 const getCheckoutSizeSummary = () => getCheckoutItems().map(item => `${item.name} / ${item.size} x ${item.qty}`).join('; ');
+const getCheckoutProductNameSummary = () => getCheckoutItems().map(item => item.name).join('; ');
+const checkoutColumnAliases = {
+  fullName: ['Full Name', 'fullName', 'full_name', 'name'],
+  phone: ['Phone Number', 'phone', 'phone_number'],
+  address: ['Full Address', 'full_address', 'address'],
+  city: ['City', 'city'],
+  state: ['State', 'state'],
+  pincode: ['PIN Code', 'pincode', 'pin_code'],
+  productName: ['product name', 'product_name', 'Product Name', 'product'],
+  price: ['price', 'total', 'amount'],
+  quantity: ['quantity', 'qty'],
+  size: ['size', 'items']
+};
+const buildCheckoutOrderValues = () => ({
+  fullName: state.checkout.form.name,
+  phone: state.checkout.form.phone,
+  address: state.checkout.form.address,
+  city: state.checkout.form.city,
+  state: state.checkout.form.state,
+  pincode: state.checkout.form.pincode,
+  productName: getCheckoutProductNameSummary(),
+  price: String(getCheckoutTotal()),
+  quantity: String(getCheckoutQuantity()),
+  size: getCheckoutSizeSummary()
+});
+const buildCheckoutOrderData = (values, aliasIndexes = {}, skippedKeys = {}) => Object.entries(values).reduce((payload, [key, value]) => {
+  if (skippedKeys[key]) return payload;
+  const aliases = checkoutColumnAliases[key] || [key];
+  const index = Math.min(aliasIndexes[key] || 0, aliases.length - 1);
+  payload[aliases[index]] = value;
+  return payload;
+}, {});
+const getMissingCheckoutColumn = (error) => {
+  const message = String(error?.message || '');
+  return message.match(/'([^']+)' column/)?.[1] || message.match(/column "([^"]+)"/)?.[1] || '';
+};
+const nextCheckoutAliasIndexes = (aliasIndexes, missingColumn) => {
+  const entry = Object.entries(checkoutColumnAliases).find(([, aliases]) => aliases.includes(missingColumn));
+  if (!entry) return null;
+  const [key, aliases] = entry;
+  const current = aliases.indexOf(missingColumn);
+  if (current < 0) return null;
+  if (current >= aliases.length - 1) return { skipKey: key };
+  return { aliasIndexes: { ...aliasIndexes, [key]: current + 1 } };
+};
+const isCheckoutPolicyError = (error) => String(error?.code || '') === '42501'
+  || /row-level security/i.test(String(error?.message || ''));
+const checkoutErrorMessage = (error) => isCheckoutPolicyError(error)
+  ? 'Order service is blocking public checkout inserts. Enable an insert policy for the checkout table in Supabase.'
+  : error?.message || 'Please try again.';
+const submitCheckoutOrder = async () => {
+  const values = buildCheckoutOrderValues();
+  let aliasIndexes = {};
+  let skippedKeys = {};
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const orderData = buildCheckoutOrderData(values, aliasIndexes, skippedKeys);
+    const { error } = await supabaseClient.from('checkout').insert([orderData]);
+    if (!error) return null;
+    const next = nextCheckoutAliasIndexes(aliasIndexes, getMissingCheckoutColumn(error));
+    if (!next) return error;
+    console.warn('Retrying checkout insert with alternate column name:', error.message);
+    if (next.skipKey) skippedKeys = { ...skippedKeys, [next.skipKey]: true };
+    else aliasIndexes = next.aliasIndexes;
+  }
+  return new Error('Checkout schema did not match any supported column names.');
+};
 
 const validators = {
-  name: v => v.trim().length >= 3 && v.trim().split(/\s+/).length >= 2,
+  name: v => v.trim().length >= 2,
   phone: v => /^[6-9]\d{9}$/.test(v.replace(/\D/g, '')),
   address: v => v.trim().length >= 6,
   city: v => v.trim().length >= 2,
@@ -713,7 +779,7 @@ const validators = {
 };
 const formValid = () => Object.entries(state.checkout.form).every(([k, v]) => validators[k](v));
 const fieldError = (key) => ({
-  name: 'Please enter your full name',
+  name: 'Please enter your name',
   phone: 'Enter a valid 10-digit mobile number',
   address: 'Address looks too short',
   city: 'Enter your city',
@@ -746,11 +812,6 @@ const renderStep1 = () => {
     <h2 class="modal-title" id="checkoutTitle-1">Confirm your order</h2>
     <p class="modal-sub">Quick checkout. No account needed. Pay when the order reaches you.</p>
     ${renderCheckoutItems()}
-    <div class="checkout-reassurance">
-      <span>COD available</span>
-      <span>Free size exchange</span>
-      <span>Dispatch confirmation call</span>
-    </div>
     <div class="checkout-totals">
       <div class="totals-row"><span>Subtotal</span><span>${money(subtotal)}</span></div>
       <div class="totals-row"><span>Delivery</span><span>${delivery === 0 ? '<strong style="color:var(--success);">FREE</strong>' : money(delivery)}</span></div>
@@ -758,8 +819,7 @@ const renderStep1 = () => {
       <div class="totals-row total"><span>Total</span><span>${money(total)}</span></div>
     </div>
     <div class="checkout-actions" style="margin-top:20px;">
-      <button class="btn-secondary" type="button" data-change-size>Change size</button>
-      <button class="btn-primary" type="button" data-next-step>Continue - pay on delivery</button>
+      <button class="btn-primary" type="button" data-next-step>Continue</button>
     </div>`;
 };
 
@@ -773,7 +833,7 @@ const renderStep2 = () => {
     <p class="modal-sub">Pay when you receive. We'll call to confirm before dispatch.</p>
     <form id="checkoutForm" novalidate style="margin-top:18px;">
       <div class="form-grid">
-        <div class="field"><label for="ck-name">Full name</label><input id="ck-name" name="name" type="text" value="${escapeHtml(f.name)}" placeholder="Your full name" autocomplete="name" data-field="name" /><span class="field-error" data-error-for="name"></span></div>
+        <div class="field"><label for="ck-name">Name</label><input id="ck-name" name="name" type="text" value="${escapeHtml(f.name)}" placeholder="Your name" autocomplete="name" data-field="name" /><span class="field-error" data-error-for="name"></span></div>
         <div class="field"><label for="ck-phone">Phone number</label><input id="ck-phone" name="phone" type="tel" value="${escapeHtml(f.phone)}" placeholder="10-digit mobile" autocomplete="tel" data-field="phone" /><span class="field-error" data-error-for="phone"></span></div>
         <div class="field"><label for="ck-address">Address</label><textarea id="ck-address" name="address" placeholder="House number, street, area" autocomplete="street-address" data-field="address">${escapeHtml(f.address)}</textarea><span class="field-error" data-error-for="address"></span></div>
         <div class="form-grid form-grid-3">
@@ -974,9 +1034,6 @@ const bindEvents = () => {
     } else if (e.target.closest('[data-prev-step]')) {
       state.checkout.step = 1;
       renderCheckout();
-    } else if (e.target.closest('[data-change-size]')) {
-      closeCheckout();
-      document.querySelector('.size-grid, #shop')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else if (e.target.closest('[data-close-checkout]')) {
       closeCheckout();
     }
@@ -998,26 +1055,15 @@ const bindEvents = () => {
       firstInvalid?.focus();
       return;
     }
-    const orderData = {
-      'Full Name': state.checkout.form.name,
-      'Phone Number': state.checkout.form.phone,
-      'Full Address': state.checkout.form.address,
-      'City': state.checkout.form.city,
-      'State': state.checkout.form.state,
-      'PIN Code': state.checkout.form.pincode,
-      price: String(getCheckoutTotal()),
-      quantity: String(getCheckoutQuantity()),
-      size: getCheckoutSizeSummary()
-    };
     if (!supabaseClient) {
       alert('Order service is still loading. Please refresh or contact us at FVRST@proton.me.');
       return;
     }
     try {
-      const { error } = await supabaseClient.from('checkout').insert([orderData]);
+      const error = await submitCheckoutOrder();
       if (error) {
         console.error('Supabase error:', error);
-        alert('Order failed: ' + error.message);
+        alert('Order failed: ' + checkoutErrorMessage(error));
         return;
       }
     } catch (err) {
