@@ -426,10 +426,14 @@ const renderDetailProduct = () => {
   }
 
   buyPanel.dataset.productId = product.id;
-  buyPanel.querySelector('.product-title').innerHTML = formatTitle(product.name);
-  buyPanel.querySelector('.product-dek').textContent = product.description;
-  buyPanel.querySelector('.price').textContent = money(product.price);
-  buyPanel.querySelector('.compare').textContent = money(product.compare);
+  const title = buyPanel.querySelector('.product-title');
+  const dek = buyPanel.querySelector('.product-dek');
+  const price = buyPanel.querySelector('.price');
+  const compare = buyPanel.querySelector('.compare');
+  if (title) title.innerHTML = formatTitle(product.name);
+  if (dek) dek.textContent = product.description;
+  if (price) price.textContent = money(product.price);
+  if (compare) compare.textContent = money(product.compare);
   const pill = document.getElementById('discountPill');
   if (pill) {
     pill.textContent = `-${getDiscountPct(product)}% off`;
