@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/frontend/home%20page/code/index.html",
+      "source": "/frontend/:path*",
       "destination": "/",
       "permanent": true
     }
