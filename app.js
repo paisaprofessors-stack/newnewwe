@@ -28,7 +28,7 @@ const CART_PRODUCT_FALLBACKS = {
     id: 'mono-tee-01',
     slug: 'travis-scott-oversized-tee',
     name: 'Travis Scott Oversized Tee',
-    image: '../../products/product 1/assets/preview1.webp',
+    image: 'products/product 1/assets/preview1.webp',
     price: 649,
     defaultSize: 'L',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
@@ -38,7 +38,7 @@ const CART_PRODUCT_FALLBACKS = {
     id: 'lunar-black-full-sleeve-01',
     slug: 'lunar-black-full-sleeve-t-shirt',
     name: 'Lunar Black Full Sleeve T Shirt',
-    image: '../../products/product 2/assets/preview1.webp',
+    image: 'products/product 2/assets/preview1.webp',
     price: 599,
     defaultSize: 'L',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
@@ -48,7 +48,7 @@ const CART_PRODUCT_FALLBACKS = {
     id: 'built-for-speed-oversized-tee-01',
     slug: 'built-for-speed-oversized-t-shirt',
     name: 'Built For Speed Oversized T-shirt',
-    image: '../../products/product 3/assets/preview1.webp',
+    image: 'products/product 3/assets/preview1.webp',
     price: 699,
     defaultSize: 'M',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
@@ -324,7 +324,7 @@ const renderHome = () => {
   const grid = document.getElementById('homeProductGrid');
   if (!featured || !hero || !grid) return;
   grid.classList.remove('is-single');
-  const headerImage = '../assets/header.webp';
+  const headerImage = 'assets/header.webp';
 
   hero.innerHTML = `
     <div class="home-hero-media home-hero-banner reveal">

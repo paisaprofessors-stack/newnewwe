@@ -3,13 +3,13 @@ window.FVRST_CONFIG = {
   baseDelivery: 30
 };
 
-const productAsset = (productDir, file) => `../../products/${productDir}/assets/${file}`;
+const productAsset = (productDir, file) => `products/${productDir}/assets/${file}`;
 
 window.FVRST_PRODUCTS = [
   {
     id: 'mono-tee-01',
     slug: 'travis-scott-oversized-tee',
-    detailUrl: '../../products/product 1/code/product.html',
+    detailUrl: 'products/product 1/code/product.html',
     name: 'Travis Scott Oversized Tee',
     shortName: 'Travis Oversized Tee',
     category: 'Oversized tee',
@@ -84,7 +84,7 @@ window.FVRST_PRODUCTS = [
   {
     id: 'lunar-black-full-sleeve-01',
     slug: 'lunar-black-full-sleeve-t-shirt',
-    detailUrl: '../../products/product 2/code/product.html',
+    detailUrl: 'products/product 2/code/product.html',
     name: 'Lunar Black Full Sleeve T Shirt',
     shortName: 'Lunar Black Full Sleeve',
     category: 'Full sleeve t-shirt',
@@ -157,7 +157,7 @@ window.FVRST_PRODUCTS = [
   {
     id: 'built-for-speed-oversized-tee-01',
     slug: 'built-for-speed-oversized-t-shirt',
-    detailUrl: '../../products/product 3/code/product.html',
+    detailUrl: 'products/product 3/code/product.html',
     name: 'Built For Speed Oversized T-shirt',
     shortName: 'Built For Speed Tee',
     category: 'Oversized t-shirt',
