@@ -1,10 +1,20 @@
 {
-  "cleanUrls": false,
+  "cleanUrls": true,
   "redirects": [
     {
+      "source": "/frontend/home%20page/code/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
       "source": "/",
-      "destination": "/frontend/home%20page/code/index.html",
-      "permanent": false
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/public/:path*"
     }
   ]
 }
